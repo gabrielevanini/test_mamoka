@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { AuthService } from 'src/app/services/auth.service';
 import { MovieService } from 'src/app/services/movie.service';
 interface IFormMovieDetail {
   director: FormControl<any>;
@@ -20,10 +19,7 @@ interface IMovieCategory {
 })
 export class MovieDetailComponent implements OnInit {
   public movieCategories: Array<IMovieCategory> = [];
-  constructor(
-    private autService: AuthService,
-    private movieService: MovieService
-  ) {}
+  constructor(private movieService: MovieService) {}
   formMovieDetail = new FormGroup<IFormMovieDetail>({
     director: new FormControl<any>(null, {
       validators: [Validators.required],
@@ -44,11 +40,10 @@ export class MovieDetailComponent implements OnInit {
       .pipe()
       .subscribe((res) => {
         this.movieCategories = [...res];
-        console.log('***** ', this.movieCategories);
       });
   }
   public saveMovie = () => {
     return false;
   };
-  private setMoviesCategories = () => {};
+  //private setMoviesCategories = () => {};
 }

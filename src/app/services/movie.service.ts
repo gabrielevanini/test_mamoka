@@ -31,4 +31,14 @@ export class MovieService {
     const url = `${this.apiURL}${this.moviesURL}`;
     return this.http.get(url, { headers });
   }
+
+  getMovie(id: string): Observable<any> {
+    const token = this.authService.getToken();
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`,
+      'Content-Type': 'application/json',
+    });
+    const url = `${this.apiURL}${this.moviesURL}/${id}`;
+    return this.http.get(url, { headers });
+  }
 }
