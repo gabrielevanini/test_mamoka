@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { combineLatest } from 'rxjs';
 import { MovieService } from 'src/app/services/movie.service';
 interface IFormMovieDetail {
   director: FormControl<any>;
@@ -35,11 +36,10 @@ export class MovieDetailComponent implements OnInit {
     }),
   });
   ngOnInit(): void {
-    this.movieService
-      .getMoviesCategories()
+    combineLatest([this.movieService.getMoviesCategories()])
       .pipe()
-      .subscribe((res) => {
-        this.movieCategories = [...res];
+      .subscribe(([movieCategories]) => {
+        this.movieCategories = [...movieCategories];
       });
   }
   public saveMovie = () => {
