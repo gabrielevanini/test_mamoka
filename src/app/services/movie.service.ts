@@ -18,26 +18,21 @@ export class MovieService {
   constructor(private http: HttpClient, private authService: AuthService) {}
 
   getMoviesCategories(): Observable<any> {
-    const headers = this.headers;
     const url = `${this.apiURL}${this.categoriesURL}`;
-    return this.http.get(url, { headers });
+    return this.http.get(url);
   }
   getMovies(): Observable<any> {
-    const headers = this.headers;
     const url = `${this.apiURL}${this.moviesURL}`;
-    return this.http.get(url, { headers });
+    return this.http.get(url);
   }
 
   getMovie(id: number | string): Observable<any> {
-    const headers = this.headers;
     const url = `${this.apiURL}${this.moviesURL}/${id}`;
-    return this.http.get(url, { headers });
+    return this.http.get(url);
   }
 
   saveMovie(id: number, data: any): Observable<any> {
-    console.log(data);
-    const headers = this.headers;
     const url = `${this.apiURL}${this.moviesURL}/${id}`;
-    return this.http.patch(url, data, { headers });
+    return this.http.patch(url, data);
   }
 }
