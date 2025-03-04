@@ -23,7 +23,7 @@
           <mat-select formControlName="category">
             <mat-option
               *ngFor="let category of movieCategories"
-              [value]="category"
+              [value]="category.id"
               >{{ category.name }}</mat-option
             >
           </mat-select>
