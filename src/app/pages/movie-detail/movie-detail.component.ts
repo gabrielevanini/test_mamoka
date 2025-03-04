@@ -14,6 +14,15 @@ interface IMovieCategory {
   name: string;
 }
 
+interface IMovieDetail {
+  id: number;
+  available: boolean;
+  category: Array<IMovieCategory>;
+  director: string;
+  title: string;
+  year: number;
+}
+
 @Component({
   selector: 'app-movie-detail',
   templateUrl: './movie-detail.component.html',
@@ -49,10 +58,17 @@ export class MovieDetailComponent implements OnInit {
       .subscribe(([movieCategories, movieDetail]) => {
         console.log(movieDetail);
         this.movieCategories = [...movieCategories];
+        this.setFormMovieField = movieDetail;
       });
   }
   public saveMovie = () => {
     return false;
   };
+  private set setFormMovieField(movieDetail: IMovieDetail) {
+    this.formMovieDetail.controls.director.setValue(movieDetail.director);
+    this.formMovieDetail.controls.title.setValue(movieDetail.title);
+    this.formMovieDetail.controls.year.setValue(movieDetail.year);
+    this.formMovieDetail.controls.category.setValue(movieDetail.category);
+  }
   //private setMoviesCategories = () => {};
 }
