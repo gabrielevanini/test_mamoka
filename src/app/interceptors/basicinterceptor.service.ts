@@ -29,8 +29,6 @@ export class BasicinterceptorService implements HttpInterceptor {
         },
       });
 
-      console.log('Interceptor ha modificato la richiesta:', authReq);
-
       return next.handle(authReq);
     }
     return next.handle(req);

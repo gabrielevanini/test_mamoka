@@ -18,11 +18,9 @@ export class AuthGuard implements CanActivate {
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): Observable<boolean> | Promise<boolean> | boolean {
-    // Logica per verificare se l'utente è autenticato
     if (this.authService.getToken()) {
-      return true; // Permetti l'accesso alla rotta
+      return true;
     } else {
-      // Se non autenticato, reindirizza alla pagina di login
       this.router.navigate(['/login']);
       return false;
     }
