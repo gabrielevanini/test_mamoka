@@ -1,0 +1,17 @@
+<form class="example-form" (ngSubmit)="doLogin()" [formGroup]="formLogin">
+  <mat-card>
+    <mat-card-content class="login-card-content">
+      <mat-form-field>
+        <mat-label>Username</mat-label>
+        <input matInput formControlName="username" />
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Password</mat-label>
+        <input matInput formControlName="password" />
+      </mat-form-field>
+      <button [disabled]="!formLogin.valid" mat-flat-button color="primary">
+        Login
+      </button>
+    </mat-card-content>
+  </mat-card>
+</form>

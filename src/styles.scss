@@ -1,1 +1,148 @@
 /* You can add global styles to this file, and also import other style files */
+
+html,
+body {
+  //   height: 100%;
+  background: #65c1be;
+  font-size: 16px;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 8px 0;
+}
+
+p {
+  margin: 0;
+}
+
+.spacer {
+  flex: 1;
+}
+
+.toolbar {
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  background-color: #1a2728;
+  color: white;
+  font-weight: 600;
+  position: fixed;
+}
+
+.toolbar img {
+  margin: 0 16px;
+}
+
+.toolbar #twitter-logo {
+  height: 40px;
+  margin: 0 8px;
+}
+
+.toolbar #youtube-logo {
+  height: 40px;
+  margin: 0 16px;
+}
+
+.toolbar #twitter-logo:hover,
+.toolbar #youtube-logo:hover {
+  opacity: 0.8;
+}
+
+.dashboard {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.content {
+  display: flex;
+
+  padding: 0 16px;
+
+  flex-direction: column;
+  align-items: center;
+}
+
+footer {
+  bottom: 0;
+  position: fixed;
+  width: 100%;
+  background: #1a2728;
+  display: flex;
+  justify-content: center;
+  color: aliceblue;
+}
+
+.movie-table {
+  margin: 60px 0 20px;
+}
+
+/* Responsive Styles */
+@media screen and (max-width: 767px) {
+  .card-container > *:not(.circle-link),
+  .terminal {
+    width: 100%;
+  }
+
+  .card:not(.highlight-card) {
+    height: 16px;
+    margin: 8px 0;
+  }
+
+  .card.highlight-card span {
+    margin-left: 72px;
+  }
+
+  svg#rocket-smoke {
+    right: 120px;
+    transform: rotate(-5deg);
+  }
+  .dashboard {
+    flex-direction: row;
+  }
+  .toolbar {
+    flex-direction: column;
+    flex: 1 0 auto;
+    padding: 32px 0;
+    position: unset;
+  }
+  .toolbar-container {
+    display: flex;
+    flex-direction: column;
+    flex: 1 0 30%;
+  }
+  .content {
+    flex: 1 0 70%;
+    padding: 0;
+  }
+  .movie-table {
+    margin: 0px;
+  }
+}
+
+@media screen and (max-width: 575px) {
+  svg#rocket-smoke {
+    display: none;
+    visibility: hidden;
+  }
+}
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
