@@ -35,6 +35,7 @@ export class MovieService {
   }
 
   saveMovie(id: number, data: any): Observable<any> {
+    console.log(data);
     const headers = this.headers;
     const url = `${this.apiURL}${this.moviesURL}/${id}`;
     return this.http.patch(url, data, { headers });

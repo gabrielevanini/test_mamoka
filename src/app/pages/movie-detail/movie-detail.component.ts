@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { combineLatest } from 'rxjs';
 import { MovieService } from 'src/app/services/movie.service';
 interface IFormMovieDetail {
@@ -30,9 +30,11 @@ interface IMovieDetail {
 })
 export class MovieDetailComponent implements OnInit {
   public movieCategories: Array<IMovieCategory> = [];
+  public movieId: number = 0;
   constructor(
     private movieService: MovieService,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private router: Router
   ) {}
   formMovieDetail = new FormGroup<IFormMovieDetail>({
     director: new FormControl<any>(null, {
@@ -49,10 +51,10 @@ export class MovieDetailComponent implements OnInit {
     }),
   });
   ngOnInit(): void {
-    const movieId = this.activatedRoute.snapshot.params['id'];
+    this.movieId = this.activatedRoute.snapshot.params['id'];
     combineLatest([
       this.movieService.getMoviesCategories(),
-      this.movieService.getMovie(movieId),
+      this.movieService.getMovie(this.movieId),
     ])
       .pipe()
       .subscribe(([movieCategories, movieDetail]) => {
@@ -62,7 +64,15 @@ export class MovieDetailComponent implements OnInit {
       });
   }
   public saveMovie = () => {
-    return false;
+    const jsonData: Partial<IMovieDetail> = this.formMovieDetail.value;
+    const jsonCategory: any = jsonData.category;
+    jsonData.category = [];
+    this.movieService
+      .saveMovie(this.movieId, jsonData)
+      .pipe()
+      .subscribe((res) => {
+        this.router.navigate(['/movie-list'], { queryParams: null });
+      });
   };
   private set setFormMovieField(movieDetail: IMovieDetail) {
     this.formMovieDetail.controls.director.setValue(movieDetail.director);
