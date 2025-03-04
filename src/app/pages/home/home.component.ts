@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { MovieService } from 'src/app/services/movie.service';
 
 @Component({
@@ -14,8 +15,9 @@ export class HomeComponent implements OnInit {
     'title',
     'category',
     'available',
+    'action',
   ];
-  constructor(private movieService: MovieService) {}
+  constructor(private movieService: MovieService, private router: Router) {}
   ngOnInit(): void {
     this.movieService
       .getMovies()
@@ -28,4 +30,8 @@ export class HomeComponent implements OnInit {
   public getAvailable(value: boolean) {
     return value ? 'Available' : 'Not available';
   }
+  public openMovieDetail = (id: string | number) => {
+    console.log(id);
+    this.router.navigate([`/movie-detail/${id}`], { queryParams: null });
+  };
 }
