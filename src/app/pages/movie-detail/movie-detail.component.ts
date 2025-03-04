@@ -36,9 +36,13 @@ export class MovieDetailComponent implements OnInit {
     }),
   });
   ngOnInit(): void {
-    combineLatest([this.movieService.getMoviesCategories()])
+    combineLatest([
+      this.movieService.getMoviesCategories(),
+      this.movieService.getMovie(67),
+    ])
       .pipe()
-      .subscribe(([movieCategories]) => {
+      .subscribe(([movieCategories, movieDetail]) => {
+        console.log(movieDetail);
         this.movieCategories = [...movieCategories];
       });
   }

@@ -32,7 +32,7 @@ export class MovieService {
     return this.http.get(url, { headers });
   }
 
-  getMovie(id: string): Observable<any> {
+  getMovie(id: number | string): Observable<any> {
     const token = this.authService.getToken();
     const headers = new HttpHeaders({
       Authorization: `Bearer ${token}`,
