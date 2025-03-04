@@ -1,10 +1,4 @@
 <table mat-table [dataSource]="dataSource" class="movie-table mat-elevation-z8">
-  <!-- 'available',
-    'category',
-    'director',
-    'id',
-    'title',
-    'year', -->
   <ng-container matColumnDef="id">
     <th mat-header-cell *matHeaderCellDef>ID</th>
     <td mat-cell *matCellDef="let element">{{ element.id }}</td>
@@ -18,6 +12,33 @@
   <ng-container matColumnDef="title">
     <th mat-header-cell *matHeaderCellDef>Title</th>
     <td mat-cell *matCellDef="let element">{{ element.title }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="category">
+    <th mat-header-cell *matHeaderCellDef>Category</th>
+    <!--TODO style="display: flex"-->
+    <td mat-cell *matCellDef="let element">
+      <div *ngFor="let el of element.category">
+        {{ el.name }}
+      </div>
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="available">
+    <th mat-header-cell *matHeaderCellDef>Available</th>
+    <!--TODO style="display: flex"-->
+    <td mat-cell *matCellDef="let element">
+      <div
+        class="l-w"
+        [ngClass]="
+          element.available
+            ? 'movie-label-available'
+            : 'movie-label-not-available'
+        "
+      >
+        {{ getAvailable(element.available) }}
+      </div>
+    </td>
   </ng-container>
 
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

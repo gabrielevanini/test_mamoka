@@ -1,5 +1,8 @@
 <!-- Toolbar -->
-<div class="dashboard">
+<div
+  class="dashboard"
+  [style.justify-content]="!(authenticated | async) ? 'center' : 'unset'"
+>
   <div class="toolbar-container" *ngIf="authenticated | async">
     <div class="toolbar" role="banner">
       <img width="40" alt="Mamoka Logo" src="assets/mamoka_logo.jpeg" />
@@ -12,13 +15,10 @@
       </div>
     </div>
   </div>
-
   <div class="content" role="main">
-    <!-- Resources -->
-
-    <div class="card-container"><router-outlet></router-outlet></div>
-
-    <!-- Footer -->
+    <div style="width: 100%" class="card-container">
+      <router-outlet></router-outlet>
+    </div>
   </div>
 </div>
 <footer>Mamoka - all rights reserved.</footer>

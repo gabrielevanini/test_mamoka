@@ -12,11 +12,8 @@ export class HomeComponent implements OnInit {
     'id',
     'year',
     'title',
-    // 'category',
-    // 'director',
-    // 'id',
-    // 'title',
-    // 'year',
+    'category',
+    'available',
   ];
   constructor(private movieService: MovieService) {}
   ngOnInit(): void {
@@ -27,5 +24,8 @@ export class HomeComponent implements OnInit {
         console.log(movies);
         this.dataSource = movies;
       });
+  }
+  public getAvailable(value: boolean) {
+    return value ? 'Available' : 'Not available';
   }
 }
