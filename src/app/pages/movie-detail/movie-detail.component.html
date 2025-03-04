@@ -1,21 +1,41 @@
-<mat-card>
-  <mat-card-content>
-    <form (ngSubmit)="saveMovie()" [formGroup]="formMovieDetail">
-      <mat-form-field>
-        <mat-label>Director</mat-label>
-        <input matInput formControlName="director" />
-      </mat-form-field>
-      <mat-form-field>
-        <mat-label>>Title</mat-label>
-        <input matInput formControlName="title" />
-      </mat-form-field>
-      <button
-        [disabled]="!formMovieDetail.valid"
-        mat-flat-button
-        color="primary"
+<div style="margin: 60px 0">
+  <mat-card>
+    <mat-card-content style="align-items: center; gap: 20px">
+      <form
+        style="display: flex; flex-direction: column"
+        (ngSubmit)="saveMovie()"
+        [formGroup]="formMovieDetail"
       >
-        Salva
-      </button>
-    </form>
-  </mat-card-content>
-</mat-card>
+        <mat-form-field>
+          <mat-label>Director</mat-label>
+          <input matInput formControlName="director" />
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Title</mat-label>
+          <input matInput formControlName="title" />
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Year</mat-label>
+          <input matInput formControlName="year" />
+        </mat-form-field>
+        <mat-form-field style="flex: 1">
+          <mat-label>Categoria</mat-label>
+          <mat-select formControlName="category">
+            <mat-option
+              *ngFor="let category of movieCategories"
+              [value]="category.id"
+              >{{ category.name }}</mat-option
+            >
+          </mat-select>
+        </mat-form-field>
+        <button
+          [disabled]="!formMovieDetail.valid"
+          mat-flat-button
+          color="primary"
+        >
+          Salva
+        </button>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>

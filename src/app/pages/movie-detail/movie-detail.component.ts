@@ -1,9 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth.service';
+import { MovieService } from 'src/app/services/movie.service';
 interface IFormMovieDetail {
   director: FormControl<any>;
   title: FormControl<any>;
+  year: FormControl<any>;
+  category: FormControl<any>;
+}
+interface IMovieCategory {
+  id: number;
+  name: string;
 }
 
 @Component({
@@ -12,7 +19,11 @@ interface IFormMovieDetail {
   styleUrls: ['./movie-detail.component.scss'],
 })
 export class MovieDetailComponent implements OnInit {
-  constructor(private autService: AuthService) {}
+  public movieCategories: Array<IMovieCategory> = [];
+  constructor(
+    private autService: AuthService,
+    private movieService: MovieService
+  ) {}
   formMovieDetail = new FormGroup<IFormMovieDetail>({
     director: new FormControl<any>(null, {
       validators: [Validators.required],
@@ -20,11 +31,24 @@ export class MovieDetailComponent implements OnInit {
     title: new FormControl<any>(null, {
       validators: [Validators.required],
     }),
+    year: new FormControl<any>(null, {
+      validators: [Validators.required],
+    }),
+    category: new FormControl<any>(null, {
+      validators: [Validators.required],
+    }),
   });
   ngOnInit(): void {
-    throw new Error('Method not implemented.');
+    this.movieService
+      .getMoviesCategories()
+      .pipe()
+      .subscribe((res) => {
+        this.movieCategories = [...res];
+        console.log('***** ', this.movieCategories);
+      });
   }
   public saveMovie = () => {
     return false;
   };
+  private setMoviesCategories = () => {};
 }
