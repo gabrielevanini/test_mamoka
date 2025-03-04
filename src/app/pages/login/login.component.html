@@ -1,6 +1,15 @@
-<form class="example-form" (ngSubmit)="doLogin()" [formGroup]="formLogin">
-  <mat-card>
-    <mat-card-content class="login-card-content">
+<mat-card class="form-card">
+  <!-- <mat-card-title>Login</mat-card-title> -->
+  <mat-card-content
+    class="login-card-content"
+    style="align-items: center; gap: 20px"
+  >
+    <div><img src="assets/mamoka_logo.jpeg" width="80" /></div>
+    <form
+      (ngSubmit)="doLogin()"
+      [formGroup]="formLogin"
+      style="display: flex; flex-direction: column"
+    >
       <mat-form-field>
         <mat-label>Username</mat-label>
         <input matInput formControlName="username" />
@@ -12,6 +21,6 @@
       <button [disabled]="!formLogin.valid" mat-flat-button color="primary">
         Login
       </button>
-    </mat-card-content>
-  </mat-card>
-</form>
+    </form>
+  </mat-card-content>
+</mat-card>

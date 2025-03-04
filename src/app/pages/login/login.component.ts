@@ -3,7 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 
-interface ILoginForm {
+interface IFormLogin {
   username: FormControl<any>;
   password: FormControl<any>;
   grant_type: FormControl<any>;
@@ -16,12 +16,8 @@ interface ILoginForm {
 })
 export class LoginComponent implements OnInit, AfterViewInit {
   constructor(private autService: AuthService, private router: Router) {}
-  ngAfterViewInit(): void {
-    this.formLogin.controls.username.setValue('gabriele.vanini@gmail.com');
-    this.formLogin.controls.password.setValue('mamoka0403');
-  }
 
-  formLogin = new FormGroup<ILoginForm>({
+  formLogin = new FormGroup<IFormLogin>({
     username: new FormControl<any>(null, {
       validators: [Validators.required],
     }),
@@ -43,4 +39,9 @@ export class LoginComponent implements OnInit, AfterViewInit {
     });
   };
   ngOnInit(): void {}
+  ngAfterViewInit(): void {
+    // TODO remove
+    this.formLogin.controls.username.setValue('gabriele.vanini@gmail.com');
+    this.formLogin.controls.password.setValue('mamoka0403');
+  }
 }
