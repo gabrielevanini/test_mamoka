@@ -1,1 +1,21 @@
-<p>movie-detail works!</p>
+<mat-card>
+  <mat-card-content>
+    <form (ngSubmit)="saveMovie()" [formGroup]="formMovieDetail">
+      <mat-form-field>
+        <mat-label>Director</mat-label>
+        <input matInput formControlName="director" />
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>>Title</mat-label>
+        <input matInput formControlName="title" />
+      </mat-form-field>
+      <button
+        [disabled]="!formMovieDetail.valid"
+        mat-flat-button
+        color="primary"
+      >
+        Salva
+      </button>
+    </form>
+  </mat-card-content>
+</mat-card>
