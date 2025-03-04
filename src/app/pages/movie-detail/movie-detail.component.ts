@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 import { combineLatest } from 'rxjs';
 import { MovieService } from 'src/app/services/movie.service';
 interface IFormMovieDetail {
@@ -20,7 +21,10 @@ interface IMovieCategory {
 })
 export class MovieDetailComponent implements OnInit {
   public movieCategories: Array<IMovieCategory> = [];
-  constructor(private movieService: MovieService) {}
+  constructor(
+    private movieService: MovieService,
+    private activatedRoute: ActivatedRoute
+  ) {}
   formMovieDetail = new FormGroup<IFormMovieDetail>({
     director: new FormControl<any>(null, {
       validators: [Validators.required],
@@ -36,9 +40,10 @@ export class MovieDetailComponent implements OnInit {
     }),
   });
   ngOnInit(): void {
+    const movieId = this.activatedRoute.snapshot.params['id'];
     combineLatest([
       this.movieService.getMoviesCategories(),
-      this.movieService.getMovie(67),
+      this.movieService.getMovie(movieId),
     ])
       .pipe()
       .subscribe(([movieCategories, movieDetail]) => {
