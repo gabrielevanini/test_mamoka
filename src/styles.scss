@@ -38,6 +38,9 @@ p {
   img {
     margin: 0 16px;
   }
+  .logout-button {
+    margin: 0 10px;
+  }
 }
 
 .dashboard {
@@ -61,6 +64,10 @@ footer {
   justify-content: center;
   color: aliceblue;
   z-index: 2;
+}
+
+.movie-table {
+  margin: 60px 0 20px;
 }
 
 /* Responsive Styles */
@@ -94,12 +101,18 @@ footer {
         flex: 1 0 auto;
         padding: 32px 0;
         position: unset;
+        .logout-button {
+          margin: 0;
+        }
       }
       .content {
         flex: 1 0 70%;
         padding: 0;
       }
     }
+  }
+  .movie-table {
+    margin: 0;
   }
 }
 
