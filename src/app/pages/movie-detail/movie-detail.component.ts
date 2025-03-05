@@ -58,7 +58,6 @@ export class MovieDetailComponent implements OnInit {
     ])
       .pipe()
       .subscribe(([movieCategories, movieDetail]) => {
-        console.log(movieDetail);
         this.movieCategories = [...movieCategories];
         this.setFormMovieField = movieDetail;
       });
