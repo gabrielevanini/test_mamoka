@@ -2,6 +2,14 @@
   class="dashboard"
   [style.justify-content]="!(authenticated | async) ? 'center' : 'unset'"
 >
+  <div class="spinner-container" *ngIf="this.loaderService.isLoading$ | async">
+    <mat-progress-spinner
+      class="example-margin"
+      [color]="'primary'"
+      [mode]="'indeterminate'"
+    >
+    </mat-progress-spinner>
+  </div>
   <div class="toolbar-container" *ngIf="authenticated | async">
     <div class="toolbar" role="banner">
       <img width="40" alt="Mamoka Logo" src="assets/mamoka_logo.jpeg" />

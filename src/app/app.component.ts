@@ -1,14 +1,15 @@
-import { ChangeDetectorRef, Component } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 import { AuthService } from './services/auth.service';
+import { LoaderService } from './services/loader.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'Mamoka test project';
 
   public authenticated: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(
@@ -18,7 +19,8 @@ export class AppComponent {
   constructor(
     private authService: AuthService,
     private router: Router,
-    public cd: ChangeDetectorRef
+    public cd: ChangeDetectorRef,
+    public loaderService: LoaderService
   ) {
     this.authService
       .isAuthenticated()
@@ -29,6 +31,7 @@ export class AppComponent {
           this.router.navigate(['/login'], { queryParams: null });
       });
   }
+  ngOnInit(): void {}
 
   public doLogout = () => {
     this.authService.logout();

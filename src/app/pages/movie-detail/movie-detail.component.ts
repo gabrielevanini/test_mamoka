@@ -77,7 +77,9 @@ export class MovieDetailComponent implements OnInit {
     this.formMovieDetail.controls.director.setValue(movieDetail.director);
     this.formMovieDetail.controls.title.setValue(movieDetail.title);
     this.formMovieDetail.controls.year.setValue(movieDetail.year);
-    this.formMovieDetail.controls.category.setValue(movieDetail.category[0].id);
+    this.formMovieDetail.controls.category.setValue(
+      movieDetail?.category[0]?.id
+    );
   }
   //private setMoviesCategories = () => {};
 }
