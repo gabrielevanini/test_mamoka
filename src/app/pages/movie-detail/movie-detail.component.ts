@@ -65,8 +65,17 @@ export class MovieDetailComponent implements OnInit {
   }
   public saveMovie = () => {
     const jsonData: Partial<IMovieDetail> = this.formMovieDetail.value;
-    const jsonCategory: any = jsonData.category;
+
+    // TODO
+    // const jsonCategory: any = this.movieCategories.filter(
+    //   (val: IMovieCategory) =>
+    //     val.id == this.formMovieDetail.controls.category.value
+    // );
+    // jsonData.category = [...jsonCategory];
+
+    //TEMP FIX controllare le API salva solo con array vuoto!
     jsonData.category = [];
+    //END TEMP FIX
     this.movieService
       .saveMovie(this.movieId, jsonData)
       .pipe()
