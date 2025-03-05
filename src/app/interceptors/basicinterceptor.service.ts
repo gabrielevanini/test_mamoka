@@ -18,19 +18,15 @@ export class BasicinterceptorService implements HttpInterceptor {
     req: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
-    if (!req.url.includes('auth')) {
-      const authToken = this.authService.getToken();
+    if (req.url.includes('auth')) return next.handle(req);
 
-      console.log(req);
-      const authReq = req.clone({
-        setHeaders: {
-          Authorization: `Bearer ${authToken}`,
-          'Content-Type': 'application/json',
-        },
-      });
-
-      return next.handle(authReq);
-    }
-    return next.handle(req);
+    const authToken = this.authService.getToken();
+    const authReq = req.clone({
+      setHeaders: {
+        Authorization: `Bearer ${authToken}`,
+        'Content-Type': 'application/json',
+      },
+    });
+    return next.handle(authReq);
   }
 }
