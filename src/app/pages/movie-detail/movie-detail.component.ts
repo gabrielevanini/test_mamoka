@@ -17,7 +17,7 @@ interface IMovieCategory {
 interface IMovieDetail {
   id: number;
   available: boolean;
-  category: Array<IMovieCategory>;
+  category: any[];
   director: string;
   title: string;
   year: number;
@@ -64,17 +64,8 @@ export class MovieDetailComponent implements OnInit {
   }
   public saveMovie = () => {
     const jsonData: Partial<IMovieDetail> = this.formMovieDetail.value;
-
-    // TODO
-    // const jsonCategory: any = this.movieCategories.filter(
-    //   (val: IMovieCategory) =>
-    //     val.id == this.formMovieDetail.controls.category.value
-    // );
-    // jsonData.category = [...jsonCategory];
-
-    //TEMP FIX controllare le API salva solo con array vuoto!
-    jsonData.category = [];
-    //END TEMP FIX
+    const catId = jsonData.category ?? [];
+    jsonData.category = [catId];
     this.movieService
       .saveMovie(this.movieId, jsonData)
       .pipe()

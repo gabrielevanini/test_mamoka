@@ -7,6 +7,11 @@ import { MovieDetailComponent } from './pages/movie-detail/movie-detail.componen
 
 const routes: Routes = [
   {
+    path: '',
+    redirectTo: '/movie-list',
+    pathMatch: 'full',
+  },
+  {
     path: 'login',
     component: LoginComponent,
   },
