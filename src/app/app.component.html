@@ -1,30 +1,35 @@
-<div
-  class="dashboard"
-  [style.justify-content]="!(authenticated | async) ? 'center' : 'unset'"
->
-  <div class="spinner-container" *ngIf="this.loaderService.isLoading$ | async">
-    <mat-progress-spinner
-      class="example-margin"
-      [color]="'primary'"
-      [mode]="'indeterminate'"
+<div>
+  <div
+    class="dashboard"
+    [style.justify-content]="!(authenticated | async) ? 'center' : 'unset'"
+  >
+    <div
+      class="spinner-container"
+      *ngIf="this.loaderService.isLoading$ | async"
     >
-    </mat-progress-spinner>
-  </div>
-  <div class="toolbar-container" *ngIf="authenticated | async">
-    <div class="toolbar" role="banner">
-      <img width="40" alt="Mamoka Logo" src="assets/mamoka_logo.jpeg" />
-      <span>Mamoka</span>
-      <div class="spacer"></div>
-      <div class="logout-button">
-        <button mat-flat-button color="primary" (click)="doLogout()">
-          logout
-        </button>
+      <mat-progress-spinner
+        class="example-margin"
+        [color]="'primary'"
+        [mode]="'indeterminate'"
+      >
+      </mat-progress-spinner>
+    </div>
+    <div class="toolbar-container" *ngIf="authenticated | async">
+      <div class="toolbar" role="banner">
+        <img width="40" alt="Mamoka Logo" src="assets/mamoka_logo.jpeg" />
+        <span>Mamoka</span>
+        <div class="spacer"></div>
+        <div class="logout-button">
+          <button mat-flat-button color="primary" (click)="doLogout()">
+            logout
+          </button>
+        </div>
       </div>
     </div>
-  </div>
-  <div class="content" role="main">
-    <div style="width: 100%" class="card-container">
-      <router-outlet></router-outlet>
+    <div class="content" role="main">
+      <div style="width: 100%" class="card-container">
+        <router-outlet></router-outlet>
+      </div>
     </div>
   </div>
 </div>

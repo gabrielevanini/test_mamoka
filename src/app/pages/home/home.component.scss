@@ -1,3 +1,9 @@
+::ng-deep .movie-table {
+  * {
+    word-break: break-all;
+  }
+}
+
 .dashboard {
   justify-content: unset;
 }
